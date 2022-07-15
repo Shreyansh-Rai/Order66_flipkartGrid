@@ -33,6 +33,15 @@ contract Marketplace {
         name = "Dapp University Marketplace";
     }
 
+    function ResellProduct(uint _id, uint _resellprice) public {
+        require(_resellprice > 0);//price needs to be greater than 0
+        Product memory _product = products[_id]; //store product in temp memory
+        _product.price = _resellprice;
+        _product.purchased = false;
+        products[_id] = _product; //makes product purchased as false
+        emit ProductCreated(_id, _product.name, _resellprice, msg.sender, _product.purchased);
+    }
+    
     function createProduct(string memory _name, uint _price) public {
         // Require a valid name
         require(bytes(_name).length > 0);

@@ -62,6 +62,7 @@ class App extends Component {
 
     this.createProduct = this.createProduct.bind(this)
     this.purchaseProduct = this.purchaseProduct.bind(this)
+    this.ResellProduct = this.ResellProduct.bind(this)
   }
 
   createProduct(name, price) {
@@ -80,6 +81,16 @@ class App extends Component {
     })
   }
 
+  ResellProduct(id, price) {
+    this.setState({loading: true})
+    console.log("id ",id , " price ", price);
+    this.state.marketplace.methods.ResellProduct(id, price).send({from: this.state.account})
+    .once('receipt', (receipt) => {
+      this.setState({ loading: false })
+    })
+  }
+
+
   render() {
     return (
       <div>
@@ -90,9 +101,11 @@ class App extends Component {
               { this.state.loading
                 ? <div id="loader" className="text-center"><p className="text-center">Loading...</p></div>
                 : <Main
+                  account={this.state.account}
                   products={this.state.products}
                   createProduct={this.createProduct}
-                  purchaseProduct={this.purchaseProduct} />
+                  purchaseProduct={this.purchaseProduct}
+                  ResellProduct={this.ResellProduct} />
               }
             </main>
           </div>
