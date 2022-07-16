@@ -109,7 +109,8 @@ class Main extends Component {
           }
         </form>
         <p>&nbsp;</p>
-        <h2>Buy Product</h2>
+        { this.state.checked ? <h2>Resell Product</h2> : <h2>Buy Product</h2>}
+        
         <table className="table">
           <thead>
             <tr>
