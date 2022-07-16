@@ -95,9 +95,9 @@ class App extends Component {
     return (
       <div>
         <Navbar account={this.state.account} />
-        <div className="container-fluid mt-5">
-          <div className="row">
-            <main role="main" className="col-lg-12 d-flex">
+        <div className="container mt-5">
+          <div className="row align-items-center">
+            <main role="main" className='col-12' >
               { this.state.loading
                 ? <div id="loader" className="text-center"><p className="text-center">Loading...</p></div>
                 : <Main
